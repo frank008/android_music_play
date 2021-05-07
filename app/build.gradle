@@ -1,0 +1,69 @@
+import java.text.SimpleDateFormat
+
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "com.weimingfa.androidmusicplay"
+        minSdkVersion 23
+        targetSdkVersion 30
+        versionCode getVersionCode("10")
+        versionName "Ag"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    flavorDimensions "default"
+    productFlavors {
+        dev {
+
+        }
+        stage {
+
+        }
+        production {
+
+        }
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    implementation files('libs\\lite-orm-1.9.2.jar')
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    implementation group: 'androidx.appcompat', name: 'appcompat', version: '1.2.0'
+    implementation group: 'com.google.android.material', name: 'material', version: '1.2.1'
+    implementation group: 'androidx.recyclerview', name: 'recyclerview', version: '1.1.0'
+    implementation group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.2.21'
+    implementation group: 'io.reactivex', name: 'rxandroid', version: '1.2.1'
+    implementation group: 'com.jakewharton', name: 'butterknife', version: '10.2.3'
+    annotationProcessor group: 'com.jakewharton', name: 'butterknife-compiler', version: '10.2.3'
+    implementation group: 'uk.co.chrisjenx', name: 'calligraphy', version: '2.3.0'
+}
+
+def getVersionCode(build) {
+    String date = new SimpleDateFormat("yyyyMMdd", Locale.getDefault()).format(new Date())
+    return Integer.parseInt(date + build)
+}
